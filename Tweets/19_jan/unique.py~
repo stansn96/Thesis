@@ -1,0 +1,29 @@
+def main():
+	akzo, unilever, ing, shell = 0, 0, 0, 0
+	lines_seen = set() # holds lines already seen
+	outfile = open("companies_19.txt", "w")
+	for line in open("companyfile_19.txt", "r"):
+		if line not in lines_seen: # not a duplicate
+			outfile.write(line)
+			lines_seen.add(line)
+			for word in line.split():
+				if word == 'akzo nobel' or word == 'akzo' or word == '#akzonobel':
+					akzo += 1
+					break
+				elif word == 'unilever' or word == '#unilever':
+					unilever += 1
+					break
+				elif word == 'ing' or word == '#ing':
+					ing += 1
+					break
+				elif word == 'shell' or word == '#shell':
+					shell += 1
+					break
+	outfile.close()
+	print("Akzo:", akzo)
+	print("Unilever:", unilever)
+	print("ING:", ing)
+	print("Shell:", shell)
+	print("Totaal:", akzo+unilever+ing+shell)
+	
+main()
